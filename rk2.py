@@ -4,6 +4,14 @@
 Este script resuelve el pendulo simple usando RK2.
 '''
 
+
+
+'''
+Cambie la linea 45 y 44, habia un "h" multiplicando, lo eliminé por que "h" ya esta considerado en
+la definicion de K1 y K2, asi que era innecesario. Luego de sacar las "h" cambiamos la funcion analitica de seno por coseno,
+para que los graficos se alinien, solo para que tubiese coherencia(linea 27)
+'''
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -16,7 +24,7 @@ plt.clf()
 
 t = np.linspace(0, 5 * 2 * np.pi / w, 400)
 
-plt.plot(t, A * np.sin(w * t))
+plt.plot(t, A * np.cos(w * t))     #aqui cambiamos algo
 
 
 def f(phi, w):
@@ -33,8 +41,8 @@ def get_k2(phi_n, w_n, h, f):
 
 def rk2_step(phi_n, w_n, h, f):
     k2 = get_k2(phi_n, w_n, h, f)
-    phi_n1 = phi_n + k2[0] * h
-    w_n1 = w_n + k2[1] * h
+    phi_n1 = phi_n + k2[0] #aqui cambiamos algo
+    w_n1 = w_n + k2[1]    #aqui cambiamos algo
     return phi_n1, w_n1
 
 N_steps = 40000
